@@ -16,6 +16,6 @@ public abstract class A {
 	public int foo(Date dt) {
 		return 0;
 	}
-	public void buzz() {		
+	public void buzz() {
 	}
 }
