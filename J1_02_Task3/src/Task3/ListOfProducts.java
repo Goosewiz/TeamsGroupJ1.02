@@ -8,12 +8,14 @@ public class ListOfProducts {
 	List<String> nameOfProduct;
 	List<Double> price;
 	List<String> INN;
+	int size;
 
 	ListOfProducts() {
 		this.article = new ArrayList<String>();
 		this.nameOfProduct = new ArrayList<String>();
 		this.price = new ArrayList<Double>();
 		this.INN = new ArrayList<String>();
+		this.size = 0;
 	}
 
 	public void addInfo(String article, String name, double price, String INN) {
@@ -21,6 +23,7 @@ public class ListOfProducts {
 		this.nameOfProduct.add(name);
 		this.price.add(price);
 		this.INN.add(INN);
+		this.size += 1;
 	}
 
 	public void viewInfo() {
