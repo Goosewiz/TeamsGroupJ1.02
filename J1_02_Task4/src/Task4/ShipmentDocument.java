@@ -7,7 +7,7 @@ import java.util.*;
  * и продажа (покупателю).
  */
 public class ShipmentDocument {
-	String documentIds; // GUID документа
+	String documentId; // GUID документа
 	Date documentDate; // дата документа
 	String documentType; // тип отгрузки: sale - продажа, moving - перемещение
 	String storage; // название склада отгрузки
