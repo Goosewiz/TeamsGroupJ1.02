@@ -17,4 +17,17 @@ public class ShipmentDocumentForSale extends ShipmentDocument {
 		}
 		return sumQuantity >= minQuantity;
 	}
+
+	public double promoSum(String[] promoArticles, double[] discounts) {
+		double sum = 0;
+		for (int i = 0; i < itemsCount; i++) {
+			for (int j = 0; j < promoArticles.length; j++) {
+				if (itemsArticle[i] == promoArticles[j]) {
+					sum += Math.round(itemsQuantity[i] * itemsPrice[i] * 100 * ((100 - discounts[j]) / 100)) / 100.0;
+					break;
+				}
+			}
+		}
+		return sum;
+	}
 }

@@ -17,7 +17,7 @@ public class ShipmentDocument {
 	protected UUID[] itemsId; // список GUID товаров
 	protected String[] itemsArticle; // список артикулов товаров
 	protected String[] itemsTitle; // список названий товаров
-	protected double[] itemsQuantity; // список количества шт. товаров
+	protected int[] itemsQuantity; // список количества шт. товаров
 	protected double[] itemsPrice; // список цен товаров
 
 	/**
