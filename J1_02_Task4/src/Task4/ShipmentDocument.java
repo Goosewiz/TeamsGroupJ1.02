@@ -1,31 +1,29 @@
 package Task4;
 
-import java.util.*;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * Документ отгрузки со склада. Бывает двух типов: перемещение (на другой склад)
  * и продажа (покупателю).
  */
 public class ShipmentDocument {
-	String documentId; // GUID документа
-	Date documentDate; // дата документа
-	String documentType; // тип отгрузки: sale - продажа, moving - перемещение
-	String storage; // название склада отгрузки
-	String storageOwner; // владелец склада отгрузки
-	String customer; // получатель (только для продажи)
-	String movingStorage; // название склада получения (только для перемещения)
-	String movingStrageOwner; // владелец склада получения (только для перемещения)
-	int itemsCount; // количество товаров в документе
-	String[] itemsId; // список GUID товаров
-	String[] itemsArticle; // список артикулов товаров
-	String[] itemsTitle; // список названий товаров
-	double[] itemsQuantity; // список количества шт. товаров
-	double[] itemsPrice; // список цен товаров
+	protected UUID documentId; // GUID документа
+	protected Date documentDate; // дата документа
+	// String documentType; // тип отгрузки: sale - продажа, moving - перемещение
+	protected String storage; // название склада отгрузки
+	protected String storageOwner = "abc"; // владелец склада отгрузки
+	protected int itemsCount; // количество товаров в документе
+	protected UUID[] itemsId; // список GUID товаров
+	protected String[] itemsArticle; // список артикулов товаров
+	protected String[] itemsTitle; // список названий товаров
+	protected double[] itemsQuantity; // список количества шт. товаров
+	protected double[] itemsPrice; // список цен товаров
 
 	/**
 	 * Суммарная стоимость товаров в документе.
 	 */
-	double totalAmount() {
+	public double totalAmount() {
 		double sum = 0;
 		for (int i = 0; i < itemsCount; i++) {
 			sum += Math.round(itemsQuantity[i] * itemsPrice[i] * 100) / 100.0;
@@ -36,9 +34,10 @@ public class ShipmentDocument {
 	/**
 	 * Стоимость товара с переданным id.
 	 */
-	double itemAmount(String id) {
+	public double itemAmount(String id) {
+		UUID uuid = UUID.fromString(id);
 		for (int i = 0; i < itemsCount; i++) {
-			if (itemsId[i] == id) {
+			if (itemsId[i] == uuid) {
 				return Math.round(itemsQuantity[i] * itemsPrice[i] * 100) / 100.0;
 			}
 		}
@@ -46,44 +45,18 @@ public class ShipmentDocument {
 	}
 
 	/**
-     * Суммарная стоимость товаров, попадающих в список промо-акции.
-     */
-    double promoSum(String[] promoArticles) {
-        double sum = 0;
-        for (int i = 0; i < itemsCount; i++) {
-            for (int j = 0; j < promoArticles.length; j++) {
-                if (itemsArticle[i] == promoArticles[j]) {
-                    sum += Math.round(itemsQuantity[i] * itemsPrice[i] * 100) / 100.0;
-                    break;
-                }
-            }
-        }
-        return sum;
-    }
-
-	/**
-     * Является ли продажа оптовой для переданного минимального объема.
-     * Для перемещений неприменимо!
-     */
-    boolean isWholesale(double minQuantity) {
-        if (documentType.equals("moving")) {
-            return false;
-        }
-        double sumQuantity = 0;
-        for (int i = 0; i < itemsCount; i++) {
-            if (itemsQuantity[i] >= minQuantity) {
-                return true;
-            }
-            sumQuantity += itemsQuantity[i];
-        }
-        return sumQuantity >= minQuantity;
-    }
-
-    /**
-     * Является ли перемещение внутренним (между складами одного владельца).
-     * Для продаж неприменимо!
-     */
-    boolean isInternalMovement() {
-        return documentType.equals("moving") && storageOwner.equals(movingStrageOwner);
-    }
+	 * Суммарная стоимость товаров, попадающих в список промо-акции.
+	 */
+	public double promoSum(String[] promoArticles) {
+		double sum = 0;
+		for (int i = 0; i < itemsCount; i++) {
+			for (int j = 0; j < promoArticles.length; j++) {
+				if (itemsArticle[i] == promoArticles[j]) {
+					sum += Math.round(itemsQuantity[i] * itemsPrice[i] * 100) / 100.0;
+					break;
+				}
+			}
+		}
+		return sum;
+	}
 }
