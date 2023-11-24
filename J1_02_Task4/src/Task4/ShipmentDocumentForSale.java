@@ -10,10 +10,10 @@ public class ShipmentDocumentForSale extends ShipmentDocument {
 	public boolean isWholesale(double minQuantity) {
 		double sumQuantity = 0;
 		for (int i = 0; i < itemsCount; i++) {
-			if (itemsQuantity[i] >= minQuantity) {
+			if (productsList[i].quantity >= minQuantity) {
 				return true;
 			}
-			sumQuantity += itemsQuantity[i];
+			sumQuantity += productsList[i].quantity;
 		}
 		return sumQuantity >= minQuantity;
 	}
@@ -22,8 +22,9 @@ public class ShipmentDocumentForSale extends ShipmentDocument {
 		double sum = 0;
 		for (int i = 0; i < itemsCount; i++) {
 			for (int j = 0; j < promoArticles.length; j++) {
-				if (itemsArticle[i] == promoArticles[j]) {
-					sum += Math.round(itemsQuantity[i] * itemsPrice[i] * 100 * ((100 - discounts[j]) / 100)) / 100.0;
+				if (productsList[i].article == promoArticles[j]) {
+					sum += Math.round(
+							productsList[i].quantity * productsList[i].price * 100 * ((100 - discounts[j]) / 100)) / 100.0;
 					break;
 				}
 			}

@@ -14,11 +14,7 @@ public class ShipmentDocument {
 	protected String storage; // название склада отгрузки
 	protected String storageOwner = "abc"; // владелец склада отгрузки
 	protected int itemsCount; // количество товаров в документе
-	protected UUID[] itemsId; // список GUID товаров
-	protected String[] itemsArticle; // список артикулов товаров
-	protected String[] itemsTitle; // список названий товаров
-	protected int[] itemsQuantity; // список количества шт. товаров
-	protected double[] itemsPrice; // список цен товаров
+	protected Product[] productsList;
 
 	/**
 	 * Суммарная стоимость товаров в документе.
@@ -26,7 +22,7 @@ public class ShipmentDocument {
 	public double totalAmount() {
 		double sum = 0;
 		for (int i = 0; i < itemsCount; i++) {
-			sum += Math.round(itemsQuantity[i] * itemsPrice[i] * 100) / 100.0;
+			sum += Math.round(productsList[i].quantity * productsList[i].price * 100) / 100.0;
 		}
 		return sum;
 	}
@@ -37,8 +33,8 @@ public class ShipmentDocument {
 	public double itemAmount(String id) {
 		UUID uuid = UUID.fromString(id);
 		for (int i = 0; i < itemsCount; i++) {
-			if (itemsId[i] == uuid) {
-				return Math.round(itemsQuantity[i] * itemsPrice[i] * 100) / 100.0;
+			if (productsList[i].id == uuid) {
+				return Math.round(productsList[i].quantity * productsList[i].price * 100) / 100.0;
 			}
 		}
 		return 0;
@@ -51,8 +47,8 @@ public class ShipmentDocument {
 		double sum = 0;
 		for (int i = 0; i < itemsCount; i++) {
 			for (int j = 0; j < promoArticles.length; j++) {
-				if (itemsArticle[i] == promoArticles[j]) {
-					sum += Math.round(itemsQuantity[i] * itemsPrice[i] * 100) / 100.0;
+				if (productsList[i].article == promoArticles[j]) {
+					sum += Math.round(productsList[i].quantity * productsList[i].price * 100) / 100.0;
 					break;
 				}
 			}

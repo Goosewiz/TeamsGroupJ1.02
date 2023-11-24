@@ -1,19 +1,19 @@
 package Task4;
 
+import java.util.UUID;
+
 public class Main {
 	public static void main(String args[]) {
 		ShipmentDocumentForMoving sdfm = new ShipmentDocumentForMoving();
 		ShipmentDocumentForSale sdfs = new ShipmentDocumentForSale();
-		String[] articles = new String[] { "abc", "bcd" };
+		UUID uuid = UUID.randomUUID();
+		Product product1 = new Product(uuid,"111", "abc", 4, 123.45);
+		Product product2 = new Product(uuid,"222", "bcd", 2, 12.34);
+		Product[] products = {product1, product2};
+		sdfm.productsList = products;
+		sdfs.productsList = products;
+		String[] articles = new String[] { "111", "222" };
 		double[] discounts = new double[] { 10, 10 };
-		sdfm.itemsArticle = articles;
-		sdfs.itemsArticle = articles;
-		int[] amount = new int[] { 4, 2 };
-		sdfm.itemsQuantity = amount;
-		sdfs.itemsQuantity = amount;
-		double[] prices = new double[] { 123.45, 12.34 };
-		sdfm.itemsPrice = prices;
-		sdfs.itemsPrice = prices;
 		sdfm.itemsCount = 2;
 		sdfs.itemsCount = 2;
 		double answer = sdfs.promoSum(articles, discounts);
