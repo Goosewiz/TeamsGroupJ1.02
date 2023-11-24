@@ -3,26 +3,29 @@ package Task2;
 import java.util.Random;
 
 public class GaussRandom {
-	private Random rand;
+	private Random rand1;
+	private Random rand2;
 
 	public GaussRandom() {
-		this.rand = new Random();
+		this.rand1 = new Random();
+		this.rand2 = new Random();
 	}
 
 	public GaussRandom(long seed) {
-		this.rand = new Random(seed);
+		this.rand1 = new Random(seed);
+		this.rand2 = new Random();
 	}
 
 	public double nextNormal(int m, int sigma) {
-		double a = rand.nextDouble();
-		double b = rand.nextDouble();
+		double a = rand1.nextDouble();
+		double b = rand2.nextDouble();
 		double answer = Math.cos(2 * a * Math.PI) * Math.sqrt(-2 * Math.log(b));
 		return answer * sigma + m;
 	}
 
 	public double nextNormal() {
-		double a = rand.nextDouble();
-		double b = rand.nextDouble();
+		double a = rand1.nextDouble();
+		double b = rand2.nextDouble();
 		double answer = Math.cos(2 * a * Math.PI) * Math.sqrt(-2 * Math.log(b));
 		return answer;
 	}
