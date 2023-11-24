@@ -5,7 +5,7 @@ public class Manufacturer extends Provider {
 		super(INN, name, address);
 	}
 
-	public void viewInfo() {
-		System.out.println(this.INN + '\t' + this.name + '\t' + this.address);
+	public String toString() {
+		return this.INN + '\t' + this.name + '\t' + this.address;
 	}
 }

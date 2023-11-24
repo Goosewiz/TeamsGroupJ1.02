@@ -10,8 +10,8 @@ public class Dealer extends Provider {
 		this.overpricePercentage = overpricePercentage;
 	}
 
-	public void viewInfo() {
-		System.out.println(this.INN + '\t' + this.name + '\t' + this.address + '\t' + this.organization.INN + '\t'
-				+ this.organization.name + '\t' + this.organization.address + '\t' + this.overpricePercentage + '\t');
+	public String toString() {
+		return this.INN + '\t' + this.name + '\t' + this.address + '\t' + this.organization.INN + '\t'
+				+ this.organization.name + '\t' + this.organization.address + '\t' + this.overpricePercentage + '\t';
 	}
 }

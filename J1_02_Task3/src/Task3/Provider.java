@@ -11,5 +11,5 @@ public abstract class Provider {
 		this.address = address;
 	}
 
-	public abstract void viewInfo();
+	public abstract String toString();
 }
