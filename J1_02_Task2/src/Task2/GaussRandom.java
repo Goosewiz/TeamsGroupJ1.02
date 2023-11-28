@@ -13,7 +13,7 @@ public class GaussRandom {
 
 	public GaussRandom(long seed) {
 		this.rand1 = new Random(seed);
-		this.rand2 = new Random();
+		this.rand2 = new Random(seed+1);
 	}
 
 	public double nextNormal(int m, int sigma) {
@@ -26,6 +26,8 @@ public class GaussRandom {
 	public double nextNormal() {
 		double a = rand1.nextDouble();
 		double b = rand2.nextDouble();
+		System.out.println(a);
+		System.out.println(b);
 		double answer = Math.cos(2 * a * Math.PI) * Math.sqrt(-2 * Math.log(b));
 		return answer;
 	}
