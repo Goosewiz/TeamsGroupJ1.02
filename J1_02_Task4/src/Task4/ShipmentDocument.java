@@ -7,14 +7,62 @@ import java.util.UUID;
  * Документ отгрузки со склада. Бывает двух типов: перемещение (на другой склад)
  * и продажа (покупателю).
  */
-public class ShipmentDocument {
-	protected UUID documentId; // GUID документа
-	protected Date documentDate; // дата документа
+public abstract class ShipmentDocument {
+	private UUID documentId; // GUID документа
+	private Date documentDate; // дата документа
 	// String documentType; // тип отгрузки: sale - продажа, moving - перемещение
-	protected String storage; // название склада отгрузки
-	protected String storageOwner = "abc"; // владелец склада отгрузки
-	protected int itemsCount; // количество товаров в документе
-	protected Product[] productsList;
+	private String storage; // название склада отгрузки
+	private String storageOwner = "abc"; // владелец склада отгрузки
+	private int itemsCount; // количество товаров в документе
+	private Product[] productsList;
+
+	public UUID getDocumentId() {
+		return this.documentId;
+	}
+
+	public void setDocumentID(UUID documentId) {
+		this.documentId = documentId;
+	}
+
+	public Date getDocumentDate() {
+		return this.documentDate;
+	}
+
+	public void setDocumentDate(Date documentDate) {
+		this.documentDate = documentDate;
+	}
+
+	public String getStorage() {
+		return this.storage;
+	}
+
+	public void setStorage(String storage) {
+		this.storage = storage;
+	}
+
+	public String getStorageOwner() {
+		return this.storageOwner;
+	}
+
+	public void setStorageOwner(String storageOwner) {
+		this.storageOwner = storageOwner;
+	}
+
+	public int getItemsCount() {
+		return this.itemsCount;
+	}
+
+	public void setItemsCount(int itemsCount) {
+		this.itemsCount = itemsCount;
+	}
+
+	public Product[] getProductsList() {
+		return this.productsList;
+	}
+
+	public void setProductsList(Product[] productsList) {
+		this.productsList = productsList;
+	}
 
 	/**
 	 * Суммарная стоимость товаров в документе.

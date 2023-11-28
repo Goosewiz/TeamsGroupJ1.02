@@ -9,6 +9,6 @@ public class ShipmentDocumentForMoving extends ShipmentDocument {
 	 * продаж неприменимо!
 	 */
 	public boolean isInternalMovement() {
-		return (this.storageOwner).equals(movingStrageOwner);
+		return (this.getStorageOwner()).equals(movingStrageOwner);
 	}
 }
