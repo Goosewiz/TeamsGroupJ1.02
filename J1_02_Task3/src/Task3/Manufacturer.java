@@ -6,6 +6,6 @@ public class Manufacturer extends Provider {
 	}
 
 	public String toString() {
-		return this.INN + '\t' + this.name + '\t' + this.address;
+		return super.toString();
 	}
 }

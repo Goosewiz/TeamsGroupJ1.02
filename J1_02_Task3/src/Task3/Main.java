@@ -54,24 +54,24 @@ public class Main {
 		boolean resultFound = false;
 		while (!input.equals("0")) {
 			input = sc.next();
-			for (int i = 0; i < listOfProducts.size; i++) {
-				Product result = listOfProducts.array.get(i);
-				if (input.equals(result.article)) {
+			for (int i = 0; i < listOfProducts.getSize(); i++) {
+				Product result = listOfProducts.getArray().get(i);
+				if (input.equals(result.getArticle())) {
 					resultFound = true;
-					if (result.provider instanceof Manufacturer) {
-						System.out.println("Товар - " + result.nameOfProduct);
-						System.out.println("Цена - " + result.price);
-						System.out.println("Название производителя - " + result.provider.name);
-						System.out.println("Адрес производителя - " + result.provider.address);
+					if (result.getProvider() instanceof Manufacturer) {
+						System.out.println("Товар - " + result.getNameOfProduct());
+						System.out.println("Цена - " + result.getPrice());
+						System.out.println("Название производителя - " + result.getProvider().getName());
+						System.out.println("Адрес производителя - " + result.getProvider().getAddress());
 					} else {
-						Dealer temp = (Dealer) result.provider;
-						System.out.println("Товар - " + result.nameOfProduct);
-						System.out.println("Цена без наценки - " + result.price + ", цена с наценкой "
-								+ temp.overpricePercentage + "% составляет "
-								+ result.price * (100 + temp.overpricePercentage) / 100);
-						System.out.println("Название производителя - " + result.provider.name
-								+ " (Название дилера - " + temp.organization.name + ")");
-						System.out.println("Адрес дилера - " + result.provider.address);
+						Dealer temp = (Dealer) result.getProvider();
+						System.out.println("Товар - " + result.getNameOfProduct());
+						System.out.println("Цена без наценки - " + result.getPrice() + ", цена с наценкой "
+								+ temp.getOverpricePercentage() + "% составляет "
+								+ result.getPrice() * (100 + temp.getOverpricePercentage()) / 100);
+						System.out.println("Название производителя - " + result.getProvider().getName()
+								+ " (Название дилера - " + temp.getOrganization().getName() + ")");
+						System.out.println("Адрес дилера - " + result.getProvider().getAddress());
 					}
 				}
 			}

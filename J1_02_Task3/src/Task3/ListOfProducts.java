@@ -4,12 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfProducts {
-	List<Product> array; // vendor code
-	int size;
+	private List<Product> array; // vendor code
+	private int size;
 
-	ListOfProducts() {
+	public ListOfProducts() {
 		this.array = new ArrayList<Product>();
 		this.size = 0;
+	}
+
+	public List<Product> getArray() {
+		return this.array;
+	}
+
+	public void setArray(List<Product> array) {
+		this.array = array;
+	}
+
+	public int getSize() {
+		return this.size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	public void addInfo(Product product) {
