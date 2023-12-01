@@ -70,7 +70,7 @@ public abstract class ShipmentDocument {
 	public double totalAmount() {
 		double sum = 0;
 		for (int i = 0; i < itemsCount; i++) {
-			sum += Math.round(productsList[i].quantity * productsList[i].price * 100) / 100.0;
+			sum += Math.round(productsList[i].getQuantity() * productsList[i].getPrice() * 100) / 100.0;
 		}
 		return sum;
 	}
@@ -81,8 +81,8 @@ public abstract class ShipmentDocument {
 	public double itemAmount(String id) {
 		UUID uuid = UUID.fromString(id);
 		for (int i = 0; i < itemsCount; i++) {
-			if (productsList[i].id == uuid) {
-				return Math.round(productsList[i].quantity * productsList[i].price * 100) / 100.0;
+			if (productsList[i].getId() == uuid) {
+				return Math.round(productsList[i].getQuantity() * productsList[i].getPrice() * 100) / 100.0;
 			}
 		}
 		return 0;
@@ -95,8 +95,8 @@ public abstract class ShipmentDocument {
 		double sum = 0;
 		for (int i = 0; i < itemsCount; i++) {
 			for (int j = 0; j < promoArticles.length; j++) {
-				if (productsList[i].article == promoArticles[j]) {
-					sum += Math.round(productsList[i].quantity * productsList[i].price * 100) / 100.0;
+				if (productsList[i].getArticle() == promoArticles[j]) {
+					sum += Math.round(productsList[i].getQuantity() * productsList[i].getPrice() * 100) / 100.0;
 					break;
 				}
 			}
